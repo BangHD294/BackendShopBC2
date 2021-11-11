@@ -65,7 +65,16 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-test 12313123 
+_________________________________________________________________________________________________________________
+fix lỗi router khi sử dụng kiểu
+Route::prefix('categories')->group(function () {
+    Route::get('/create',[
+        'as' => 'categories.create',
+        'uses' => 'CategoryController@create'
+    ]);
+});
+B1: Đầu tiên hãy truy cập tệp: app > Providers > RouteServiceProvider.php
+B2: Trong tệp đó, hãy thay thế dòng protected $namespace = null;bằngprotected $namespace = 'App\Http\Controllers' / nếu bị comment dòng protected $namespace = 'App\\Http\\Controllers'; thì mở comment ra.
 
 
 
