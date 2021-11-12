@@ -44,6 +44,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('menus.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-bars"></i>
+                        <p>
+                            Menus
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>
