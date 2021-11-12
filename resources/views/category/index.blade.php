@@ -23,61 +23,38 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table id="example1" class="table ">
                                 <thead>
                                 <tr>
-                                    <th>Rendering engine</th>
-                                    <th>Browser</th>
-                                    <th>Platform(s)</th>
-                                    <th>Engine version</th>
-                                    <th>CSS grade</th>
+                                    <th>id</th>
+                                    <th>Tên danh mục</th>
+                                    <th>Action</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($categories as $categoriesItem)
                                 <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 4.0
+                                    <td>{{$categoriesItem->id}}</td>
+                                    <td>{{$categoriesItem->name}}</td>
+                                    <td>
+                                        <a href="{{route('categories.edit',['id'=>$categoriesItem->id])}}" class="btn btn-default">Edit</a>
+                                        <a href="{{route('categories.delete',['id'=>$categoriesItem->id])}}" class="btn btn-danger">Delete</a>
                                     </td>
-                                    <td>Win 95+</td>
-                                    <td> 4</td>
-                                    <td>X</td>
                                 </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.0
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5</td>
-                                    <td>C</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 5.5
-                                    </td>
-                                    <td>Win 95+</td>
-                                    <td>5.5</td>
-                                    <td>A</td>
-                                </tr>
-                                <tr>
-                                    <td>Trident</td>
-                                    <td>Internet
-                                        Explorer 6
-                                    </td>
-                                    <td>Win 98+</td>
-                                    <td>6</td>
-                                    <td>A</td>
-                                </tr>
-
+                                @endforeach
                                 </tbody>
 
                             </table>
+                            {{$categories->links('pagination::bootstrap-4')}}
+
                         </div>
+
                         <!-- /.card-body -->
                     </div>
+
                 </div>
+
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>

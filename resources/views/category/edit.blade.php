@@ -8,8 +8,8 @@
     <!-- Content Wrappert -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('partials.content-header',['name'=>'category', 'key'=>'add'])
-        <!-- /.content-header -->
+    @include('partials.content-header',['name'=>'category', 'key'=>'Edit'])
+    <!-- /.content-header -->
 
         <!-- Main content -->
         <div class="content">
@@ -23,7 +23,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm" action="{{route('categories.store')}}" method="post">
+                            <form id="quickForm" action="{{route('categories.update', ['id'=>$category->id])}}" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -31,7 +31,9 @@
                                         <input type="text"
                                                name="name"
                                                class="form-control"
-                                               placeholder="Tên danh mục">
+                                               placeholder="Tên danh mục"
+                                               value="{{$category->name}}"
+                                        >
                                     </div>
                                     <div class="form-group">
                                         <label>Chọn danh mục cha</label>
