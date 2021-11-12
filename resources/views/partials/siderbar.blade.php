@@ -14,6 +14,8 @@
             </div>
             <div class="info">
                 <a style="color: orangered" href="#" class="d-block">{{ Auth::user()->name }}</a>
+                <span style="color: #0c9d58">Mã Admin: {{Auth::user()->id}}</span>
+
             </div>
         </div>
 
