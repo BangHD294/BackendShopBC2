@@ -1,6 +1,7 @@
 <?php
-
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,16 @@ Route::get('/dashboard', function () {
 //    return view('home');
 //});
 
-
+Route::prefix('categories')->group(function () {
+    Route::get('/',[
+        'as' => 'categories.index',
+        'uses' => 'CategoryController@index'
+    ]);
+    Route::get('/create',[
+        'as' => 'categories.create',
+        'uses' => 'CategoryController@create'
+    ]);
+});
 
 
 
