@@ -54,6 +54,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('product.index')}}" class="nav-link">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Sản phẩm
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>
