@@ -10,8 +10,11 @@ use App\Models\ProductTag;
 use App\Models\Tag;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use mysql_xdevapi\Exception;
 use phpDocumentor\Reflection\Types\This;
 
 class AdminProductController extends Controller
@@ -31,7 +34,8 @@ class AdminProductController extends Controller
         $this->productTag = $productTag;
     }
     public function index(){
-        return view('admin.product.index');
+        $product = $this->product->latest()->paginate(10);
+        return view('admin.product.index', compact('product'));
     }
 
     public function create(){
@@ -46,40 +50,54 @@ class AdminProductController extends Controller
         return $htmlOption;
     }
     public function store(Request $request){
-        $dataProducts = [
-            'name' => $request->name,
-            'price' => $request->price,
-            'content' =>$request->contents,
-            'user_id' => auth()->id(),
-            'category_id' => $request->category_id,
-        ];
+        try {
+            DB::beginTransaction();
+            $dataProducts = [
+                'name' => $request->name,
+                'price' => $request->price,
+                'content' =>$request->contents,
+                'user_id' => auth()->id(),
+                'category_id' => $request->category_id,
+            ];
 
-        $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
-        if (!empty($dataUploadFeatureImage)){
-            $dataProducts['feature_image_name'] = $dataUploadFeatureImage['file_name'];
-            $dataProducts['feature_image_path'] = $dataUploadFeatureImage['file_path'];
-        }
-        $productData =  $this->product->create($dataProducts);
-        // insert data to product_images
-        if ($request->hasFile('image_path')){
-            foreach ($request->image_path as $fileItem){
-                $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
-                $productData->images()->create([
-                    'image_path'=>$dataProductImageDetail['file_path'],
-                    'image_name' =>$dataProductImageDetail['file_name'],
-                ]);
-
+            $dataUploadFeatureImage = $this->storageTraitUpload($request, 'feature_image_path', 'product');
+            if (!empty($dataUploadFeatureImage)){
+                $dataProducts['feature_image_name'] = $dataUploadFeatureImage['file_name'];
+                $dataProducts['feature_image_path'] = $dataUploadFeatureImage['file_path'];
             }
-        }
-        // insert tags for product
-        foreach ($request->tags as $tagItem){
-            $tagInstance = $this->tag->firstOrCreate(['name'=>$tagItem]);
+            $productData =  $this->product->create($dataProducts);
+            // insert data to product_images
+            if ($request->hasFile('image_path')){
+                foreach ($request->image_path as $fileItem){
+                    $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
+                    $productData->images()->create([
+                        'image_path'=>$dataProductImageDetail['file_path'],
+                        'image_name' =>$dataProductImageDetail['file_name'],
+                    ]);
+
+                }
+            }
+            // insert tags for product
+            if (!empty($request->tags)){
+                foreach ($request->tags as $tagItem){
+                    $tagInstance = $this->tag->firstOrCreate(['name'=>$tagItem]);
 //            $this->productTag->create([
 //               'product_id' => $productData->id,
 //                'tag_id' => $tagInstance->id
 //            ]);
-            $tagId[] = $tagInstance->id;
+                    $tagId[] = $tagInstance->id;
+                }
+            }
+
+            $productData->tags()->attach($tagId);
+            DB::commit();
+            return redirect()->route('product.index');
+
+        }catch (Exception $exception){
+            DB::rollBack();
+            Log::error('Message: ' .$exception->getMessage(). 'line : ' .$exception->getLine());
+
         }
-        $productData->tags()->attach($tagId);
+
     }
 }

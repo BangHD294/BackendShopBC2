@@ -36,13 +36,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-{{--                                @foreach($dataMenu as $dataMenuItem)--}}
+                                @foreach($product as $productItem)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Iphone 13 promax 512gb</td>
-                                        <td>34.000.000</td>
-                                        <td><img src="" alt=""></td>
-                                        <td>Iphone</td>
+                                        <td>{{$productItem->id}}</td>
+                                        <td>{{$productItem->name}}</td>
+                                        <td>{{$productItem->price}}</td>
+                                        <td><img style="width: 100px" src="{{$productItem->feature_image_path}}" alt=""></td>
+                                        <td>{{$productItem->category->name}}</td>
                                         <td>
                                             <a href="" class="btn btn-default">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
@@ -50,11 +50,11 @@
 {{--                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>--}}
                                         </td>
                                     </tr>
-{{--                                @endforeach--}}
+                                @endforeach
                                 </tbody>
 
                             </table>
-{{--                            {{$dataMenu->links('pagination::bootstrap-4')}}--}}
+                            {{$product->links('pagination::bootstrap-4')}}
 
                         </div>
 
