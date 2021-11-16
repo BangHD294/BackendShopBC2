@@ -21,7 +21,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
                             </div>
-                            <form id="quickForm" action="" method="post" enctype="multipart/form-data">
+                            <form id="quickForm" action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
@@ -56,7 +56,7 @@
                                     <div class="form-group">
                                         <label>Chọn danh mục </label>
                                         <select class="form-control select2 select_product" style="width: 100%;"
-                                                name="parent_id"
+                                                name="category_id"
                                         >
                                             <option value="0">Chọn danh mục</option>
                                             {!! $htmlOption !!}
