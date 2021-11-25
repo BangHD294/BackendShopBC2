@@ -28,15 +28,21 @@
                                         <label >Tên sản phẩm</label>
                                         <input type="text"
                                                name="name"
-                                               class="form-control"
+                                               class="form-control @error('name', 'post') is-invalid @enderror"
                                                placeholder="Tên sản phẩm">
+                                        @error('name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label >Giá sản phẩm</label>
                                         <input type="text"
                                                name="price"
-                                               class="form-control"
+                                               class="form-control @error('price', 'post') is-invalid @enderror"
                                                placeholder="Nhập giá sản phẩm">
+                                        @error('price')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label >Ảnh đại diện</label>
@@ -55,12 +61,15 @@
 
                                     <div class="form-group">
                                         <label>Chọn danh mục </label>
-                                        <select class="form-control select2 select_product" style="width: 100%;"
+                                        <select class="form-control select2 select_product @error('category_id', 'post') is-invalid @enderror" style="width: 100%;"
                                                 name="category_id"
                                         >
                                             <option value="0">Chọn danh mục</option>
                                             {!! $htmlOption !!}
                                         </select>
+                                        @error('category_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group">
@@ -72,9 +81,12 @@
 
                                     <div class="form-group">
                                         <label>Nhập nội dung</label>
-                                        <textarea id="about" name="contents" class="form-control my-editor " rows="12">
+                                        <textarea id="about" name="contents" class="form-control my-editor @error('contents', 'post') is-invalid @enderror" rows="12">
                                             {{old('contents')}}
                                         </textarea>
+                                        @error('contents')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </div>
