@@ -4,6 +4,11 @@
     <title>Trang chủ</title>
 @endsection
 
+@section('js')
+
+    <script src="{{asset('vendors/sweetalert2/sweetalert2@11.js')}}"></script>
+    <script src="{{asset('admins/product/index/list.js')}}"></script>
+@endsection
 @section('content')
     <!-- Content Wrappert -->
     <div class="content-wrapper">
@@ -40,14 +45,17 @@
                                     <tr>
                                         <td>{{$productItem->id}}</td>
                                         <td>{{$productItem->name}}</td>
-                                        <td>{{$productItem->price}}</td>
+                                        <td>{{number_format($productItem->price)}}</td>
                                         <td><img style="width: 100px" src="{{$productItem->feature_image_path}}" alt=""></td>
-                                        <td>{{$productItem->category->name}}</td>
+                                        <td>{{optional($productItem->category)->name}}</td>
                                         <td>
-                                            <a href="" class="btn btn-default">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-{{--                                            <a href="{{route('menus.edit',['id'=>$dataMenuItem->id])}}" class="btn btn-default">Edit</a>--}}
-{{--                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>--}}
+{{--                                            <a href="" class="btn btn-default">Edit</a>--}}
+{{--                                            <a href="" class="btn btn-danger">Delete</a>--}}
+                                            <a href="{{route('product.edit',['id'=>$productItem->id])}}" class="btn btn-default">Edit</a>
+                                            <a
+                                                data-url="{{route('product.delete',['id'=>$productItem->id])}}"
+                                                href=""
+                                                class="btn btn-danger action-delete">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
