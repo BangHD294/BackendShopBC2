@@ -62,6 +62,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('slider.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-sliders-h"></i>
+                        <p>
+                            slider
+                        </p>
+                    </a>
+                </li>
 
             </ul>
         </nav>

@@ -29,7 +29,9 @@
                                         <input type="text"
                                                name="name"
                                                class="form-control @error('name', 'post') is-invalid @enderror"
-                                               placeholder="Tên sản phẩm">
+                                               placeholder="Tên sản phẩm"
+                                               value="{{old('name')}}"
+                                        >
                                         @error('name')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -39,7 +41,9 @@
                                         <input type="text"
                                                name="price"
                                                class="form-control @error('price', 'post') is-invalid @enderror"
-                                               placeholder="Nhập giá sản phẩm">
+                                               placeholder="Nhập giá sản phẩm"
+                                               value="{{old('price')}}"
+                                        >
                                         @error('price')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
