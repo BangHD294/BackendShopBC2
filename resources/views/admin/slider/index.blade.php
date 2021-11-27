@@ -35,24 +35,24 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-{{--                                @foreach($dataMenu as $dataMenuItem)--}}
+                                @foreach($sliders as $slidersItem)
                                     <tr>
-                                        <td>1</td>
-                                        <td>slider 1</td>
-                                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit</td>
-                                        <td>image</td>
+                                        <td>{{$slidersItem->id}}</td>
+                                        <td>{{$slidersItem->name}}</td>
+                                        <td>{{$slidersItem->description}}</td>
+                                        <td><img src="{{$slidersItem->image_path}}" alt=""></td>
                                         <td>
-                                            <a href="" class="btn btn-default">Edit</a>
+
+                                            <a href="{{route('slider.edit',['id'=>$slidersItem->id])}}" class="btn btn-default">Edit</a>
                                             <a href="" class="btn btn-danger">Delete</a>
-{{--                                            <a href="{{route('menus.edit',['id'=>$dataMenuItem->id])}}" class="btn btn-default">Edit</a>--}}
 {{--                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>--}}
                                         </td>
                                     </tr>
-{{--                                @endforeach--}}
+                                @endforeach
                                 </tbody>
 
                             </table>
-{{--                            {{$dataMenu->links('pagination::bootstrap-4')}}--}}
+                            {{$sliders->links('pagination::bootstrap-4')}}
 
                         </div>
 
