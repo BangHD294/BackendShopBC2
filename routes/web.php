@@ -135,8 +135,42 @@ Route::prefix('admin')->group(function () {
             'as' => 'slider.update',
             'uses' => 'SliderAdminController@update'
         ]);
+        Route::get('/delete/{id}',[
+            'as' => 'slider.delete',
+            'uses' => 'SliderAdminController@delete'
+        ]);
 
     });
+
+    //setting
+    Route::prefix('setting')->group(function () {
+        Route::get('/',[
+            'as' => 'setting.index',
+            'uses' => 'SettingAdminController@index'
+        ]);
+        Route::get('/create',[
+            'as' => 'setting.create',
+            'uses' => 'SettingAdminController@create'
+        ]);
+        Route::post('/store',[
+            'as' => 'setting.store',
+            'uses' => 'SettingAdminController@store'
+        ]);
+        Route::get('/edit/{id}',[
+            'as' => 'setting.edit',
+            'uses' => 'SettingAdminController@edit'
+        ]);
+        Route::post('/update/{id}',[
+            'as' => 'setting.update',
+            'uses' => 'SettingAdminController@update'
+        ]);
+        Route::get('/delete/{id}',[
+            'as' => 'setting.delete',
+            'uses' => 'SettingAdminController@delete'
+        ]);
+
+    });
+
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

@@ -3,6 +3,10 @@
 @section('title')
     <title>Trang chủ</title>
 @endsection
+@section('js')
+    <script src="{{asset('vendors/sweetalert2/sweetalert2@11.js')}}"></script>
+    <script src="{{asset('admins/slider/index/index.js')}}"></script>
+@endsection
 
 @section('content')
     <!-- Content Wrappert -->
@@ -44,8 +48,9 @@
                                         <td>
 
                                             <a href="{{route('slider.edit',['id'=>$slidersItem->id])}}" class="btn btn-default">Edit</a>
-                                            <a href="" class="btn btn-danger">Delete</a>
-{{--                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>--}}
+                                            <a
+                                                data-url="{{route('slider.delete',['id'=>$slidersItem->id])}}"
+                                                href="" class="btn btn-danger action-delete">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

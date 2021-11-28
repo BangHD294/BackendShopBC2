@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SliderRequest;
 use App\Models\Slider;
+use App\Traits\DeleteModelTrait;
 use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 class SliderAdminController extends Controller
 {
     use StorageImageTrait;
+    use DeleteModelTrait;
     private $slider;
     public function __construct(Slider $slider)
     {
@@ -64,5 +66,8 @@ class SliderAdminController extends Controller
         }catch (\Exception $exception){
             Log::error('Lỗi: ' . $exception->getMessage(). ' Line: ' .$exception->getLine());
         }
+    }
+    public function delete($id){
+        return $this->deleteModelTrait($id, $this->setting);
     }
 }

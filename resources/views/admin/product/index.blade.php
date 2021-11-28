@@ -5,7 +5,6 @@
 @endsection
 
 @section('js')
-
     <script src="{{asset('vendors/sweetalert2/sweetalert2@11.js')}}"></script>
     <script src="{{asset('admins/product/index/list.js')}}"></script>
 @endsection

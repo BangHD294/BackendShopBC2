@@ -70,7 +70,22 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{route('setting.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Setting
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Danh sách nhân viên
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
