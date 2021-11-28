@@ -171,6 +171,23 @@ Route::prefix('admin')->group(function () {
 
     });
 
+    //users
+    Route::prefix('users')->group(function () {
+        Route::get('/',[
+            'as' => 'users.index',
+            'uses' => 'AdminUsersController@index'
+        ]);
+        Route::get('/create',[
+            'as' => 'users.create',
+            'uses' => 'AdminUsersController@create'
+        ]);
+        Route::post('/store',[
+            'as' => 'users.store',
+            'uses' => 'AdminUsersController@store'
+        ]);
+
+    });
+
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
