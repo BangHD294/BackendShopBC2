@@ -1,0 +1,11 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.backgrout-color{
+    background: #ff8d00a6;
+}
+input[type="checkbox"]{
+    transform: scale(1.2);
+}

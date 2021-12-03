@@ -185,9 +185,33 @@ Route::prefix('admin')->group(function () {
             'as' => 'users.store',
             'uses' => 'AdminUsersController@store'
         ]);
+        Route::get('/edit/{id}',[
+            'as' => 'users.edit',
+            'uses' => 'AdminUsersController@edit'
+        ]);
+        Route::post('/update/{id}',[
+            'as' => 'users.update',
+            'uses' => 'AdminUsersController@update'
+        ]);
+        Route::get('/delete/{id}',[
+            'as' => 'users.delete',
+            'uses' => 'AdminUsersController@delete'
+        ]);
 
     });
 
+
+    Route::prefix('roles')->group(function () {
+        Route::get('/',[
+            'as' => 'roles.index',
+            'uses' => 'AdminRolesController@index'
+        ]);
+        Route::get('/create',[
+            'as' => 'roles.create',
+            'uses' => 'AdminRolesController@create'
+        ]);
+
+    });
 });
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
