@@ -94,6 +94,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('permissions.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-user-check"></i>
+                        <p>
+                            Data table Permissions
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

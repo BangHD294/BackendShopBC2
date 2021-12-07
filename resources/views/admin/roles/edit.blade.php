@@ -17,7 +17,7 @@
     <!-- Content Wrappert -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-    @include('partials.content-header',['name'=>'Roles', 'key'=>'add'])
+    @include('partials.content-header',['name'=>'Roles', 'key'=>'Edit'])
     <!-- /.content-header -->
 
         <!-- Main content -->
@@ -32,7 +32,7 @@
                             </div>
                             <!-- /.card-header -->
                             <!-- form start -->
-                            <form id="quickForm" action="{{route('roles.store')}}" method="post"
+                            <form id="quickForm" action="{{route('roles.update', ['id'=>$role->id])}}" method="post"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="card-body">
@@ -41,14 +41,15 @@
                                         <input type="text" name="name"
                                                class="form-control "
                                                placeholder="Nhập tên vai trò"
-                                               value="{{old('name')}}"
+                                               value="{{$role->name}}"
                                         >
 
                                     </div>
 
                                     <div class="form-group">
                                         <label>Mô tả vai trò</label>
-                                        <textarea id="about" name="display_name" placeholder="Nhập mô tả" class="form-control my-editor " rows="6">{{old('display_name')}}</textarea>
+                                        <textarea id="about"
+                                                  name="display_name" placeholder="Nhập mô tả" class="form-control my-editor " rows="6">{{$role->display_name}}</textarea>
                                     </div>
 
                                 </div>
@@ -58,7 +59,6 @@
                                         checkall
                                     </label>
                                 </div>
-
                                 <!-- /.card-body -->
                                 @foreach($permissionsParent as $key=>$value)
                                     <div class="card card-checked bg-light mb-3 col-md-12">
@@ -75,6 +75,7 @@
                                                     <h5 class="card-title">
                                                         <label for="">
                                                             <input type="checkbox"
+                                                                   {{$pemissionsChecked->contains('id',$valueChildrent->id) ? 'checked' : ''}}
                                                                    class="checkbox_childrent"
                                                                    name="permission_id[]"
                                                                    value="{{$valueChildrent->id}}">
@@ -83,15 +84,6 @@
                                                     </h5>
                                                 </div>
                                             @endforeach
-{{--                                            @foreach(config('permissions.module_childrent') as $tableItemchildrent)--}}
-
-{{--                                                <div class="col-md-3">--}}
-{{--                                                    <label for="">--}}
-{{--                                                        <input type="checkbox" value="{{$tableItemchildrent}}" name="module_childrent[]">--}}
-{{--                                                        {{$tableItemchildrent}}--}}
-{{--                                                    </label>--}}
-{{--                                                </div>--}}
-{{--                                            @endforeach--}}
 
                                         </div>
 

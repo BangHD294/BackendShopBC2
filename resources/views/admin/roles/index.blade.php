@@ -44,12 +44,11 @@
                                         <td>{{$rolesItem->name}}</td>
                                         <td>{{$rolesItem->display_name}}</td>
                                         <td>
-                                            <a href="" class="btn btn-default">Edit</a>
+                                            <a href="{{route('roles.edit',['id'=>$rolesItem->id])}}" class="btn btn-default">Edit</a>
                                             <a
                                                 data-url=""
                                                 href="" class="btn btn-danger action-delete">Delete</a>
 
-{{--                                            <a href="{{route('slider.edit',['id'=>$slidersItem->id])}}" class="btn btn-default">Edit</a>--}}
 {{--                                            <a--}}
 {{--                                                data-url="{{route('slider.delete',['id'=>$slidersItem->id])}}"--}}
 {{--                                                href="" class="btn btn-danger action-delete">Delete</a>--}}

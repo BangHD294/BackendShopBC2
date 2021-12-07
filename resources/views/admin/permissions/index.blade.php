@@ -27,26 +27,32 @@
                                 <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Tên Menu</th>
+                                    <th>Name</th>
+                                    <th>Display Name</th>
+                                    <th>Key code</th>
                                     <th>Action</th>
 
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($dataMenu as $dataMenuItem)
+                                @foreach($permission as $permissionItem)
                                     <tr>
-                                        <td>{{$dataMenuItem->id}}</td>
-                                        <td>{{$dataMenuItem->name}}</td>
+                                        <td>{{$permissionItem->id}}</td>
+                                        <td>{{$permissionItem->name}}</td>
+                                        <td>{{$permissionItem->display_name}}</td>
+                                        <td>{{$permissionItem->key_code}}</td>
                                         <td>
-                                            <a href="{{route('menus.edit',['id'=>$dataMenuItem->id])}}" class="btn btn-default">Edit</a>
-                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>
+                                            <a href="" class="btn btn-default">Edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
+{{--                                            <a href="{{route('menus.edit',['id'=>$dataMenuItem->id])}}" class="btn btn-default">Edit</a>--}}
+{{--                                            <a href="{{route('menus.delete',['id'=>$dataMenuItem->id])}}" class="btn btn-danger">Delete</a>--}}
                                         </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
 
                             </table>
-                            {{$dataMenu->links('pagination::bootstrap-4')}}
+                            {{$permission->links('pagination::bootstrap-4')}}
 
                         </div>
 
