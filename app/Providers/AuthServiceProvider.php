@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Product;
+use App\Services\PermissionGateAndPolicyAccess;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -24,9 +26,18 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::define('category-list', 'App\Policies\CategoryPolicy@view');
-        Gate::define('category-add', 'App\Policies\CategoryPolicy@create');
-        Gate::define('category-edit', 'App\Policies\CategoryPolicy@update');
-        Gate::define('category-delete', 'App\Policies\CategoryPolicy@delete');
+//        $this->defineGateCategory();
+
+        $permissonGateAndPolicy = new PermissionGateAndPolicyAccess();
+        $permissonGateAndPolicy->setGateAndPolicyAccess();
+        Gate::define('product-edit',function ($user, $id){
+            $product =Product::find($id);
+            if ($user->checkPermissionAccess('product_edit') && $user->id === $product->user_id){
+                return true;
+            }
+            return false;
+        });
+
     }
+
 }

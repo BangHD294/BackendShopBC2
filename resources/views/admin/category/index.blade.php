@@ -8,8 +8,8 @@
     <!-- Content Wrappert -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('partials.content-header', ['name'=>'category', 'key'=>'List'])
-        <!-- /.content-header -->
+    @include('partials.content-header', ['name'=>'category', 'key'=>'List'])
+    <!-- /.content-header -->
 
         <!-- Main content -->
         <div class="content">
@@ -18,7 +18,8 @@
                     <div class="card col-12">
                         <div class="card-header">
                             <h3 class="card-title">DataTable with default features</h3>
-                            <div class="col-12"><a href="{{route('categories.create')}}" class="btn btn-success float-right">Thêm mới</a></div>
+                            <div class="col-12"><a href="{{route('categories.create')}}"
+                                                   class="btn btn-success float-right">Thêm mới</a></div>
                         </div>
 
                         <!-- /.card-header -->
@@ -34,14 +35,20 @@
                                 </thead>
                                 <tbody>
                                 @foreach($categories as $categoriesItem)
-                                <tr>
-                                    <td>{{$categoriesItem->id}}</td>
-                                    <td>{{$categoriesItem->name}}</td>
-                                    <td>
-                                        <a href="{{route('categories.edit',['id'=>$categoriesItem->id])}}" class="btn btn-default">Edit</a>
-                                        <a href="{{route('categories.delete',['id'=>$categoriesItem->id])}}" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>{{$categoriesItem->id}}</td>
+                                        <td>{{$categoriesItem->name}}</td>
+                                        <td>
+                                            @can('category-edit')
+                                                <a href="{{route('categories.edit',['id'=>$categoriesItem->id])}}"
+                                                   class="btn btn-default">Edit</a>
+                                            @endcan
+                                            @can('category-delete')
+                                                <a href="{{route('categories.delete',['id'=>$categoriesItem->id])}}"
+                                                   class="btn btn-danger">Delete</a>
+                                            @endcan
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
 
