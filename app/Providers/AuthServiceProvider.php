@@ -30,13 +30,14 @@ class AuthServiceProvider extends ServiceProvider
 
         $permissonGateAndPolicy = new PermissionGateAndPolicyAccess();
         $permissonGateAndPolicy->setGateAndPolicyAccess();
-        Gate::define('product-edit',function ($user, $id){
-            $product =Product::find($id);
-            if ($user->checkPermissionAccess('product_edit') && $user->id === $product->user_id){
-                return true;
-            }
-            return false;
-        });
+//
+//        Gate::define('product-edit',function ($user, $id){
+//            $product =Product::find($id);
+//            if ($user->checkPermissionAccess('product_edit') && $user->id === $product->user_id){
+//                return true;
+//            }
+//            return false;
+//        });
 
     }
 

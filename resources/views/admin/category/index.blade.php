@@ -18,8 +18,10 @@
                     <div class="card col-12">
                         <div class="card-header">
                             <h3 class="card-title">DataTable with default features</h3>
+                            @can('category-add')
                             <div class="col-12"><a href="{{route('categories.create')}}"
                                                    class="btn btn-success float-right">Thêm mới</a></div>
+                            @endcan
                         </div>
 
                         <!-- /.card-header -->

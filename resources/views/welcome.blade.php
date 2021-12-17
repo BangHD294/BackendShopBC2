@@ -155,6 +155,7 @@
     <link rel="stylesheet" href="{{asset('homeAdmin/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('homeAdmin/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('homeAdmin/dist/css/swiper.min.css')}}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
 <!-- Page Content START -->
